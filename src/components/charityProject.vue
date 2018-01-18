@@ -4,28 +4,29 @@
     <div class="image-container">
         <img :src="projectData.url">
     </div>
-
-    <div class="project-text">
-      <p class="title uppercase bold">{{projectData.title}}</p>
-      <div class="row-aligned">
-        <label class="text-label uppercase" for="mission">{{text.mission}}</label>
-        <p class="text mission-height"> {{projectData.mission}}</p>
+    <div class="info-container">
+      <div class="project-text">
+        <p class="title uppercase bold">{{projectData.title}}</p>
+        <div class="row-aligned">
+          <label class="text-label uppercase" for="mission">{{text.mission}}</label>
+          <p class="text mission-height"> {{projectData.mission}}</p>
+        </div>
+        <div class="row-aligned">
+          <label class="text-label uppercase" for="approach">{{text.approach}}</label>
+          <p class="text approach-height">{{projectData.approach}}</p>
+        </div>
       </div>
-      <div class="row-aligned">
-        <label class="text-label uppercase" for="approach">{{text.approach}}</label>
-        <p class="text approach-height">{{projectData.approach}}</p>
+      <div class="donation-container">
+
+        <button v-if="metamaskAvailable"
+                @click="makeDonation"
+                type="button" name="button"
+                class="uppercase button bold">
+            {{text.button}}
+        </button>
+
+        <a class="button uppercase bold" :href="projectData.website">{{text.website}}</a>
       </div>
-    </div>
-    <div class="donation-container">
-
-      <button v-if="metamaskAvailable"
-              @click="makeDonation"
-              type="button" name="button"
-              class="uppercase button">
-          {{text.button}}
-      </button>
-
-      <a class="button uppercase" :href="projectData.website">{{text.website}}</a>
     </div>
   </div>
 
@@ -72,17 +73,30 @@ export default {
 <style lang="scss" scoped>
 .project-container {
   width: 380px;
+  border-radius: 10px 10px 10px 10px;
+  border: 1px solid #F0F8FF;
 }
 
 .image-container {
   width: 380px;
   height: 200px;
+  background-color: #ffffff;
+  padding-bottom: 10px;
+  border-radius: 10px 10px 0 0;
 }
 
 img {
   width: 100%;
   height: 100%;
   display: block;
+  border-radius: 10px 10px 0 0;
+}
+
+.info-container {
+  background-color: #FFFFFF;
+  padding: 20px 10px 20px 10px;
+  border-radius: 0 0 10px 10px;
+  border-top: 1px solid #F0F8FF;
 }
 
 .row-aligned {
@@ -91,14 +105,18 @@ img {
 }
 
 .project-text {
+  p {
+    margin: 0;
+  }
   p.title {
     color: #E9633B;
     font-size: 18px;
     height: 50px;
+    padding-bottom: 20px;
   }
 
   .text-label {
-    width: 90px;
+    width: 100px;
     color: #63AA9C;
     padding-right: 10px;
     text-align: left;
@@ -106,7 +124,7 @@ img {
   }
 
   p.text {
-    width: 350px;
+    width: 300px;
     margin: 0;
     text-align: left;
     color: #221E1D;
@@ -125,6 +143,7 @@ img {
   display: flex;
   justify-content: space-between;
   width: 80%;
+  padding-top: 20px;
   .button {
     border-radius: 17px;
     padding: 10px 0 10px 0;
